@@ -7,12 +7,12 @@
 #   Character.create(name: 'Luke', movie: movies.first)
 
 20.times do |x|
-	user = User.create(
+   fname = Faker::Name.first_name
+	  User.create(
 	  description: Faker::Quote.famous_last_words, 
-      first_name: Faker::Name.first_name,
+      first_name: fname,
       last_name: Faker::Name.last_name,
-      description: Faker::Lorem.paragraph_by_chars(number: 200, supplemental: false))
-	    email: "#{x}@yopmail.com" )
+	    email: fname + "@yopmail.com")
       puts "Seeding of User nb #{x}"
 end 
 
@@ -22,7 +22,7 @@ t1 = Time.parse("2019-11-01 14:40:34")
 t2 = Time.parse("2022-01-01 00:00:00")
 
 2.times do |x|
-  event = Event.create(
+    Event.create(
     start_date: rand(t1..t2),
     duration: rand(5..100)*5,
     description: Faker::Lorem.paragraph_by_chars(number: 300, supplemental: false),
@@ -34,7 +34,7 @@ t2 = Time.parse("2022-01-01 00:00:00")
 end
 
 20.times do |x|
-  guest = Attendance.create(
+   Attendance.create(
     user_id: User.all.sample.id,
     event_id: Event.all.sample.id)
   puts "Seeding of Guest nb #{x}"
